@@ -5,7 +5,7 @@
   "main": "runme.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node-gyp configure build",
+    "start": "node-gyp configure build && node runme.js",
     "conf": "node-gyp configure",
     "run": "echo \"Try this\" && node runme.js",
     "install": "node-gyp rebuild"
