@@ -1,0 +1,11 @@
+{
+  'targets': [
+    {
+      'target_name': 'example',
+      'sources': [ 'example.cxx', 'example_wrap.cxx' ],
+      'link_settings': {
+          'libraries': ['c:\\Users\\colin\\safeqp64\\safeqp.lib']
+      }
+    }
+  ]
+}
