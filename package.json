@@ -5,17 +5,16 @@
   "main": "runme.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "swigstep.sh && node-gyp configure build && node runme.js",
-    "conf": "swigstep.sh && node-gyp configure",
+    "start": "./swigstep.sh && node-gyp configure build && node runme.js",
+    "conf": "./swigstep.sh && node-gyp configure",
     "run": "echo \"Try this\" && node runme.js",
-    "install": "swigstep.sh && node-gyp rebuild"
+    "install": "./swigstep.sh && node-gyp rebuild && node runme.js"
   },
   "author": "me",
   "license": "ISC",
   "gypfile": true,
   "dependencies": {
     "node": "6",
-    "node-gyp": "3",
-    "run": "^1.4.0"
+    "node-gyp": "3"
   }
 }
