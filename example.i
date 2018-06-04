@@ -1,9 +1,11 @@
 %module example
 %{
-    extern "C" double opt(int n,double*a,double*b);
-    extern "C" int iopt(int n,int*a,int*b);
-    extern "C" char* Return_Message(int);
-    extern "C" char* version(char*);
+    extern "C" {
+        double opt(int n,double*a,double*b);
+        int iopt(int n,int*a,int*b);
+        char* Return_Message(int);
+        char* version(char*);
+    };
 %}
 %typemap(in) double*,int*
 {
@@ -16,7 +18,6 @@
             $1[i] = ($*1_ltype) arr->Get(i)->NumberValue();
         }
     }
-
 }
 %typemap(argout) double*
 {
