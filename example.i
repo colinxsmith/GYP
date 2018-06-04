@@ -1,7 +1,7 @@
 %module example
 %{
-    extern double opt(int n,double*a,double*b);
-    extern int iopt(int n,int*a,int*b);
+    extern "C" double opt(int n,double*a,double*b);
+    extern "C" int iopt(int n,int*a,int*b);
     extern "C" char* Return_Message(int);
     extern "C" char* version(char*);
 %}
