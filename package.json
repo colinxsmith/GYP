@@ -15,6 +15,6 @@
   "gypfile": true,
   "dependencies": {
     "node": "6",
-    "node-gyp": "3"
+    "node-gyp": "^3.6.2"
   }
 }
