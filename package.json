@@ -4,11 +4,9 @@
   "description": "",
   "main": "runme.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "export LD_LIBRARY_PATH=/home/colin/safeqp && node runme.js",
     "start": "./swigstep.sh && export LD_LIBRARY_PATH=/home/colin/safeqp && node-gyp configure build && node runme.js",
-    "conf": "./swigstep.sh && node-gyp configure",
-    "run": "export LD_LIBRARY_PATH=/home/colin/safeqp && echo \"Try this\" && node runme.js",
-    "install": "export LD_LIBRARY_PATH=/home/colin/safeqp && ./swigstep.sh && node-gyp rebuild && node runme.js"
+    "install": "./swigstep.sh && node-gyp rebuild && npm test"
   },
   "author": "me",
   "license": "ISC",
