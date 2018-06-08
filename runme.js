@@ -1,7 +1,9 @@
 var test = require("./build/Release/example");
 //var http = require('http');
 
-
+exports.here=function() {
+    return 'Inside runme';
+}
 
 
 var a = [1.0,2.0,3.0,4.0],b = [1,1,1,1];
