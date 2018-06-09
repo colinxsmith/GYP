@@ -36,4 +36,4 @@ $(INTERFACE).o:	$(INTERFACE).cxx
 	g++ $(CFLAGS) $(CXXFLAGS) -c $< -o $@
 
 test:
-	npm test
+	LD_LIBRARY_PATH=/home/colin/safeqp && sed "s|/build/Release||" runme.js | node_modules/.bin/node 
