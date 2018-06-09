@@ -35,5 +35,5 @@ $(INTERFACE)_wrap.o:	$(INTERFACE)_wrap.cxx
 $(INTERFACE).o:	$(INTERFACE).cxx
 	g++ $(CFLAGS) $(CXXFLAGS) -c $< -o $@
 
-test:
+test:	$(INTERFACE).node
 	LD_LIBRARY_PATH=/home/colin/safeqp && sed "s|/build/Release||" runme.js | node_modules/.bin/node 
