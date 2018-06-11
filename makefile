@@ -1,5 +1,5 @@
 INTERFACE=example
-GYPVER=6.14.2
+GYPVER=`node_modules/.bin/node -v | sed "s/v//"`
 CFLAGS=	-fpic \
 	'-DNODE_GYP_MODULE_NAME=$(INTERFACE)' \
 	'-DUSING_UV_SHARED=1' \
@@ -26,7 +26,7 @@ $(INTERFACE).node:	$(INTERFACE)_wrap.o $(INTERFACE).o
 
 $(INTERFACE)_wrap.cxx:	$(INTERFACE).i
 	$(SWIG) -version
-	$(SWIG) -javascript -c++ -node -DV8_VERSION=0x031110 -module $(INTERFACE) -o $@ $(INTERFACE).i
+	$(SWIG) -javascript -c++ -node -DV8_VERSION=0x032224 -module $(INTERFACE) -o $@ $(INTERFACE).i
 
 clean:
 	$(RM) $(INTERFACE)_wrap.cxx $(INTERFACE).o $(INTERFACE)_wrap.o $(INTERFACE).node
