@@ -1,5 +1,5 @@
 INTERFACE=example
-GYPVER=`node_modules/.bin/node -v | sed "s/v//"`
+GYPVER=$$(node_modules/.bin/node -v | sed "s/v//")
 CFLAGS=	-fpic \
 	'-DNODE_GYP_MODULE_NAME=$(INTERFACE)' \
 	'-DUSING_UV_SHARED=1' \
@@ -8,33 +8,23 @@ CFLAGS=	-fpic \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
 	'-DBUILDING_NODE_EXTENSION'
-
-
-
 CXXFLAGS=-I/home/colin/.node-gyp/$(GYPVER)/include/node \
-	-I/home/colin/.node-gyp/$(GYPVER)/src \
 	-I/home/colin/.node-gyp/$(GYPVER)/deps/uv/include \
 	-I/home/colin/.node-gyp/$(GYPVER)/deps/v8/include \
 
 CXXFLAGS+=	-std=gnu++0x
-
 LDFLAGS=-L/home/colin/safeqp -lsafeqp 
 SWIG=/home/colin/SWIGcvs/SWIG/swig
-
 $(INTERFACE).node:	$(INTERFACE)_wrap.o $(INTERFACE).o
 	gcc -shared $(INTERFACE)_wrap.o $(INTERFACE).o $(LDFLAGS) -o $@
-
-$(INTERFACE)_wrap.cxx:	$(INTERFACE).i
+$(INTERFACE)_wrap.cxx:	$(INTERFACE).i makefile
 	$(SWIG) -version
-	$(SWIG) -javascript -c++ -node -DV8_VERSION=0x032224 -module $(INTERFACE) -o $@ $(INTERFACE).i
-
+	$(SWIG) -javascript -c++ -node -DV8_VERSION=0x032318 -module $(INTERFACE) -o $@ $(INTERFACE).i
 clean:
 	$(RM) $(INTERFACE)_wrap.cxx $(INTERFACE).o $(INTERFACE)_wrap.o $(INTERFACE).node
-
 $(INTERFACE)_wrap.o:	$(INTERFACE)_wrap.cxx
 	g++ $(CFLAGS) $(CXXFLAGS) -c $< -o $@
 $(INTERFACE).o:	$(INTERFACE).cxx
 	g++ $(CFLAGS) $(CXXFLAGS) -c $< -o $@
-
 test:	$(INTERFACE).node
 	LD_LIBRARY_PATH=/home/colin/safeqp && sed "s|/build/Release||" runme.js | node_modules/.bin/node 
