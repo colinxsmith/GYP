@@ -1,4 +1,5 @@
 INTERFACE=example
+GYPVER=6.14.2
 CFLAGS=	-fpic \
 	'-DNODE_GYP_MODULE_NAME=$(INTERFACE)' \
 	'-DUSING_UV_SHARED=1' \
@@ -10,10 +11,10 @@ CFLAGS=	-fpic \
 
 
 
-CXXFLAGS=-I/home/colin/.node-gyp/6.14.2/include/node \
-	-I/home/colin/.node-gyp/6.14.2/src \
-	-I/home/colin/.node-gyp/6.14.2/deps/uv/include \
-	-I/home/colin/.node-gyp/6.14.2/deps/v8/include \
+CXXFLAGS=-I/home/colin/.node-gyp/$(GYPVER)/include/node \
+	-I/home/colin/.node-gyp/$(GYPVER)/src \
+	-I/home/colin/.node-gyp/$(GYPVER)/deps/uv/include \
+	-I/home/colin/.node-gyp/$(GYPVER)/deps/v8/include \
 
 CXXFLAGS+=	-std=gnu++0x
 
