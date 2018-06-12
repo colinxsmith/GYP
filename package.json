@@ -12,6 +12,7 @@
   "license": "ISC",
   "gypfile": true,
   "dependencies": {
+    "nbind": "^0.3.15",
     "node": "6",
     "node-gyp": "^3.6.2"
   }
