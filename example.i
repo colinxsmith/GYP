@@ -1,11 +1,12 @@
 %module example
 %{
     extern "C" {
-        double opt(int n,double*a,double*b);
+        typedef double* vector;
+        double opt(int n,vector a,vector b);
         int iopt(int n,int*a,int*b);
         char* Return_Message(int);
         char* version(char*);
-        double ddotvec(unsigned long n,double*a,double*b);
+        double ddotvec(unsigned long n,vector a,vector b);
     };
 %}
 %typemap(in) double*,int*,unsigned long*
@@ -20,7 +21,19 @@
         }
     }
 }
-%typemap(argout) double*
+%typemap(in) vector
+{//This cannot figure out that $*1type is double so we must say double explicitly
+    $1 = 0;
+    if($input->IsArray())
+    {
+        v8::Handle<v8::Array> arr= v8::Handle<v8::Array>::Cast($input);
+        $1 = new double[arr->Length()];
+        for(size_t i = 0;i < arr->Length();++i) {
+            $1[i] = (double) arr->Get(i)->NumberValue();
+        }
+    }
+}
+%typemap(argout) double*,vector
 {
     if($1 && $input->IsArray()) {
         v8::Handle<v8::Array> arr= v8::Handle<v8::Array>::Cast($input);
@@ -38,7 +51,7 @@
         }
     }
 }
-%typemap(freearg) double*,char*,int*,unsigned long*
+%typemap(freearg) double*,char*,int*,unsigned long*,vector
 {
    if($1) {delete[] $1;}
 }
@@ -48,7 +61,7 @@
 }
 %inline
 %{
-double opt(int n,double*a,double*b) {
+double opt(int n,vector a,vector b) {// Multiply each b by 10
   double back = 0;
   while(n--) {
     back += *a++ * *b;
@@ -57,7 +70,7 @@ double opt(int n,double*a,double*b) {
   }
   return back;
 }
-int iopt(int n,int*a,int*b) {
+int iopt(int n,int*a,int*b) { // Multiply each b by 11.1
   int back = 0;
   while(n--) {
     back += *a++ * *b;
@@ -67,9 +80,10 @@ int iopt(int n,int*a,int*b) {
   return back;  
 }    
 %}
+//The following are programed in the optimiser
 char* Return_Message(int);
 char* version(char*asetup);
-double ddotvec(unsigned long n,double*a,double*b);
+double ddotvec(unsigned long n,vector a,vector b);
 
 
 
