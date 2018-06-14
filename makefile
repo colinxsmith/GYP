@@ -16,15 +16,13 @@ CXXFLAGS+=	-std=gnu++0x
 LDFLAGS=-L/home/colin/safeqp -lsafeqp 
 SWIG=/home/colin/SWIGcvs/SWIG/swig
 $(INTERFACE).node:	$(INTERFACE)_wrap.o $(INTERFACE).o
-	gcc -shared $(INTERFACE)_wrap.o $(INTERFACE).o $(LDFLAGS) -o $@
+	gcc -shared $(INTERFACE)_wrap.o $(LDFLAGS) -o $@
 $(INTERFACE)_wrap.cxx:	$(INTERFACE).i makefile
 	$(SWIG) -version
 	$(SWIG) -javascript -c++ -node -DV8_VERSION=0x032318 -module $(INTERFACE) -o $@ $(INTERFACE).i
 clean:
-	$(RM) $(INTERFACE)_wrap.cxx $(INTERFACE).o $(INTERFACE)_wrap.o $(INTERFACE).node
+	$(RM) $(INTERFACE)_wrap.cxx $(INTERFACE)_wrap.o $(INTERFACE).node
 $(INTERFACE)_wrap.o:	$(INTERFACE)_wrap.cxx
-	g++ $(CFLAGS) $(CXXFLAGS) -c $< -o $@
-$(INTERFACE).o:	$(INTERFACE).cxx
 	g++ $(CFLAGS) $(CXXFLAGS) -c $< -o $@
 test:	$(INTERFACE).node
 	export LD_LIBRARY_PATH=/home/colin/safeqp && sed "s|/build/Release||" runme.js | node_modules/.bin/node 
