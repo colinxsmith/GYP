@@ -1,4 +1,5 @@
 var test = require("./build/Release/example");
+console.log(test);
 //var http = require('http');
 
 exports.here=function() {
@@ -19,6 +20,8 @@ console.log(test.version());
 var idot = test.iopt(b.length,b,b);
 console.log(idot);
 console.log(b);
+
+console.log('Using optimiser for this: '+test.ddotvec(a.length,a,b));
 
 /* http.createServer(function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});

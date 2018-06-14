@@ -5,9 +5,10 @@
         int iopt(int n,int*a,int*b);
         char* Return_Message(int);
         char* version(char*);
+        double ddotvec(unsigned long n,double*a,double*b);
     };
 %}
-%typemap(in) double*,int*
+%typemap(in) double*,int*,unsigned long*
 {
     $1 = 0;
     if($input->IsArray())
@@ -28,7 +29,7 @@
         }
     }
 }
-%typemap(argout) int*
+%typemap(argout) int*,unsigned long*
 {
     if($1 && $input->IsArray()) {
         v8::Handle<v8::Array> arr= v8::Handle<v8::Array>::Cast($input);
@@ -37,7 +38,7 @@
         }
     }
 }
-%typemap(freearg) double*,char*,int*
+%typemap(freearg) double*,char*,int*,unsigned long*
 {
    if($1) {delete[] $1;}
 }
@@ -49,6 +50,7 @@ double opt(int n,double*a,double*b);
 int iopt(int n,int*a,int*b);
 char* Return_Message(int);
 char* version(char*asetup);
+double ddotvec(unsigned long n,double*a,double*b);
 
 
 
