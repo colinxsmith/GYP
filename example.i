@@ -80,7 +80,7 @@ int iopt(int n,int*a,int*b) { // Multiply each b by 11.1
   return back;  
 }    
 %}
-//The following are programed in the optimiser
+//The following are programmed in the optimiser
 char* Return_Message(int);
 char* version(char*asetup);
 double ddotvec(unsigned long n,vector a,vector b);
