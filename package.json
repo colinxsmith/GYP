@@ -10,7 +10,6 @@
   },
   "author": "me",
   "license": "ISC",
-  "gypfile": true,
   "dependencies": {
     "node": "10",
     "node-gyp": "^3.7.0"
