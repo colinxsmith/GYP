@@ -4,6 +4,7 @@
   "description": "",
   "main": "runme.js",
   "scripts": {
+    "node": "node -v",
     "test": "export LD_LIBRARY_PATH=/home/colin/safeqp && node runme.js",
     "start": "./swigstep.sh && export LD_LIBRARY_PATH=/home/colin/safeqp && node-gyp configure build && node runme.js",
     "install": "./swigstep.sh && node-gyp rebuild && npm test"
@@ -11,7 +12,7 @@
   "author": "me",
   "license": "ISC",
   "dependencies": {
-    "node": "10",
+    "node": "latest",
     "node-gyp": "^3.7.0"
   }
 }
