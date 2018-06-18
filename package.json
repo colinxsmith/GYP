@@ -1,6 +1,6 @@
 {
-  "name": "simple",
-  "version": "1.0.0",
+  "name": "wrapping",
+  "version": "1.0.1",
   "description": "",
   "main": "runme.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "license": "ISC",
   "gypfile": true,
   "dependencies": {
-    "node": "6",
+    "node": "10",
     "node-gyp": "^3.7.0"
   }
 }
