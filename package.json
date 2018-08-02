@@ -12,7 +12,7 @@
   "author": "me",
   "license": "ISC",
   "dependencies": {
-    "node": "latest",
+    "node": "^10.8.0",
     "node-gyp": "^3.7.0"
   }
 }
