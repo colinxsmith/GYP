@@ -15,7 +15,7 @@ CXXFLAGS=-I/home/colin/.node-gyp/$(GYPVER)/include/node \
 CXXFLAGS+=	-std=gnu++0x
 LDFLAGS=-L/home/colin/safeqp -lsafeqp 
 SWIG=/home/colin/SWIGcvs/SWIG/swig
-$(INTERFACE).node:	$(INTERFACE)_wrap.o $(INTERFACE).o
+$(INTERFACE).node:	$(INTERFACE)_wrap.o
 	gcc -shared $(INTERFACE)_wrap.o $(LDFLAGS) -o $@
 $(INTERFACE)_wrap.cxx:	$(INTERFACE).i makefile
 	$(SWIG) -version
